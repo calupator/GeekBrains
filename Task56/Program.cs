@@ -49,7 +49,7 @@ Console.Clear();
 Console.Write("Введите размерность прямоугольного массива (n x n): n = ");
 int n = Convert.ToInt32(Console.ReadLine());
 int[,] matrix = new int[n, n];
-Console.WriteLine("Пев : ");
+Console.WriteLine("Массив: ");
 InputMatrix(matrix);
 Print(matrix);
 Console.WriteLine ($"Минимальное значение суммы элементов строки: " + CompareRow(matrix));
