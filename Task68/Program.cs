@@ -32,5 +32,4 @@ while ((m < 0) || (n < 0))
     n = Convert.ToInt32(Console.ReadLine());
 }
 
-Akkerman(n, m);
 Console.WriteLine("M = " + m + "; N = " + n + " -> " + Akkerman(m, n));
