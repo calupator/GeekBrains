@@ -1,24 +1,19 @@
 ﻿// =====================================================================================================================
 // Задача 54. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 
-void CreateArray(double[,] arr)
+void CreateArray(int[,] arr)
 {
     Random rnd = new Random();
     for (int i = 0; i < arr.GetLength(0); i++)
     {
         for (int j = 0; j < arr.GetLength(1); j++)
-        {
-            //arr[i, j] = Math.Round(rnd.NextDouble() * 10, 2);
             arr[i, j] = rnd.Next(-9, 10);
-            if (rnd.Next(0, 2) == 1)
-                arr[i, j] *= (-1);
-        }
     }
 }
 
-void PrintArray(double[,] arr)
+void PrintArray(int[,] arr)
 {
-    Console.WriteLine();
+    //Console.WriteLine();
     for (int i = 0; i < arr.GetLength(0); i++)
     {
         for (int j = 0; j < arr.GetLength(1); j++)
@@ -27,9 +22,9 @@ void PrintArray(double[,] arr)
     }
 }
 
-void SortMatrix(double[,] arr)
+void SortMatrix(int[,] arr)
 {
-    double temp = 0;
+    int temp = 0;
     for (int i = 0; i < arr.GetLength(0); i++)
     {
         for (int j = arr.GetLength(1) - 1; j > 0; j--)
@@ -50,14 +45,19 @@ void SortMatrix(double[,] arr)
 Console.Clear();
 
 Console.Write("Введите размерность массива через пробел: ");
-string[] num = Console.ReadLine().Split(' '); // ввод двух чисел в одну строку
+
+string[] num = Console.ReadLine().Split(" "); // ввод двух чисел в одну строку
 int n = int.Parse(num[0]);
 int m = int.Parse(num[1]);
-double[,] matr = new double[m, n];
+int[,] matr = new int[m, n];
 CreateArray(matr);
-Console.Write("Начальный массив: ");
+
+Console.WriteLine();
+Console.WriteLine("Начальный массив:");
 PrintArray(matr);
+
 SortMatrix(matr);
-Console.Write("Результат: ");
+Console.WriteLine();
+Console.WriteLine("Результирующий массив:");
 PrintArray(matr);
 

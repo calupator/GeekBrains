@@ -1,42 +1,68 @@
-﻿//Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+﻿// =====================================================================================================================
+// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+//Например, даны 2 матрицы:
+//2 4 | 3 4
+//3 2 | 3 3
+//Результирующая матрица будет:
+//18 20
+//15 18
 
-void InputMatrix(int[,] matrix)
+void CreateArray(int[,] arr)
 {
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    Random rnd = new Random();
+    for (int i = 0; i < arr.GetLength(0); i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
+        for (int j = 0; j < arr.GetLength(1); j++)
         {
-            matrix[i, j] = new Random().Next(-10, 11);
-            Console.Write($"{matrix[i, j]} \t");
+            arr[i, j] = rnd.Next(0, 10);
         }
-        Console.WriteLine();
-    }
-}
-void ProizMatrix(int[,] matrixOne, int[,] matrixTwo)
-{
-    int[,] ResultMatrix = new int[matrixOne.GetLength(0), matrixOne.GetLength(1)];
-    for (int i = 0; i < matrixOne.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrixOne.GetLength(1); j++)
-        {
-            ResultMatrix[i, j] = matrixOne[i, j] * matrixTwo[j, i];
-            Console.Write(ResultMatrix[i, j] + " ");
-        }
-        Console.WriteLine();
+        //Console.WriteLine();
     }
 }
 
+void PrintArray(int[,] arr)
+{
+    //Console.WriteLine();
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+            Console.Write(arr[i, j] + " \t");
+        Console.WriteLine();
+    }
+}
+
+int[,] MulMatrix(int[,] firstMatrix, int[,] secondMatrix)
+{
+    int[,] ResultMAtrix = new int[firstMatrix.GetLength(0), secondMatrix.GetLength(0)];
+    for (int i = 0; i < firstMatrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < firstMatrix.GetLength(1); j++)
+        {
+            for (int k = 0; k < secondMatrix.GetLength(1); ++k)
+                ResultMAtrix[i, k] += firstMatrix[i, j] * secondMatrix[j, k];
+        }
+    }
+    return ResultMAtrix;
+}
 
 Console.Clear();
-Console.Write("Введите кол-во строк и столбцов: ");
-string[] num = Console.ReadLine().Split(' ');
-int n = int.Parse(num[0]);
-int m = int.Parse(num[1]);
-int[,] matrixOne = new int[n, m];
-int[,] matrixTwo = new int[n, m];
-Console.WriteLine("Первая матрица: ");
-InputMatrix(matrixOne);
-Console.WriteLine("Bторая матрица ");
-InputMatrix(matrixTwo);
-Console.WriteLine("Произведение: ");
-ProizMatrix(matrixOne, matrixTwo);
+
+Console.Write("Введите размерность матрицы (n x n): n = ");
+int n = Convert.ToInt32(Console.ReadLine());
+
+int[,] matrixA = new int[n, n];
+CreateArray(matrixA);
+Console.WriteLine();
+Console.WriteLine("Матрица А:");
+PrintArray(matrixA);
+
+int[,] matrixB = new int[n, n];
+CreateArray(matrixB);
+Console.WriteLine();
+Console.WriteLine("Матрица В:");
+PrintArray(matrixB);
+
+int[,] matrixC = MulMatrix(matrixA, matrixB);
+Console.WriteLine();
+Console.WriteLine("Произведение C:");
+PrintArray(matrixC);
